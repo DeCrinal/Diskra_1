@@ -1,12 +1,13 @@
 #pragma once
+#define _CRT_SECURE_NO_WARNINGS
 #include<iostream>
 #include<stack>
 #include<map>
 #include<vector>
 using namespace std;
 extern vector<pair<vector<int>,int>>Universum;
-extern int minRank;
-extern int maxRank;
+extern const int minRank;
+extern const int maxRank;
 extern int powerOfUn;
 void toFillUniversum_WithGray(int a);
 void print_Universum(void);

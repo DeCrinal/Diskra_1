@@ -1,7 +1,7 @@
 #include"myMultiset.h"
 vector<pair<vector<int>,int>>Universum;
-int minRank = 1;
-int maxRank = 20;
+const int minRank = 1;
+const int maxRank = 20;
 int powerOfUn;
 unsigned int myMultiset::size()const{
 	return multiset.size();
@@ -98,23 +98,33 @@ void myMultiset::initialize_auto(int cardinal) {
 	}
  }
 void myMultiset::initialize_handly(int cardinal) {
+	int amElementsWasInserted = 0;
 	multiset.resize(Universum.size());
 	for (int i = 0; i < Universum.size(); i++) {
 		multiset[i].first = Universum[i].first;
 		multiset[i].second = 0;
 	}
-	for (int i = 0; i < cardinal; i++) {
+	for (;true;){
 		string input;
+		char rankStr[300];
 		vector<int>temp;
-		int index;
+		int index,rankInt;
 		do {
 			temp.resize(0);
 			do {
-				cout << endl << "Input " << i + 1 << " element" << endl;
+				cout << "Input element and rank:" << endl;
 				cin >> input;
 				cin.clear();
-				cin.sync();
-			} while (input.size() < Universum[0].first.size());
+				cin.sync(); 
+                fgets(rankStr, sizeof(rankStr), stdin);
+                while (sscanf(rankStr, "%d", &rankInt) != 1 || rankInt < 0
+					||amElementsWasInserted+rankInt>powerOfUn) {
+                    cout << "Incorrect input data, input element again:" << endl;
+                    fflush(stdin);
+                    fgets(rankStr, sizeof(rankStr), stdin);
+                }
+                fflush(stdin);
+			} while (input.size() != Universum[0].first.size());
 			for (int j = 0; j < Universum[0].first.size(); j++) {
 				if (input[j] == '0' || input[j] == '1') {
 					temp.push_back(input[j] - '0');
@@ -127,11 +137,16 @@ void myMultiset::initialize_handly(int cardinal) {
 				break;
 			}
 		}
-		if (multiset[index].second < Universum[index].second) {
-			multiset[index].second++;
+		if (multiset[index].second + rankInt <= Universum[index].second
+			&& amElementsWasInserted + rankInt <= cardinal) {
+			multiset[index].second += rankInt;
+			amElementsWasInserted += rankInt;
+			cout << "Element accepted" << endl;
 		}
 		else
-			i--;
+			cout <<"Incorrect rank, input element and rank again:" << endl;;
+		if (amElementsWasInserted == cardinal)
+			return;
 	}
 }
 myMultiset integrateWith(const myMultiset& mM1, const myMultiset& mM2) {
