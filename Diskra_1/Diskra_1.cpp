@@ -19,7 +19,7 @@ int main()
         toFillUniversum_WithGray(capacityOfUniv);
         print_Universum();
         if(powerOfUn!=0)
-            cout << endl << "Do you want to fill first multiset by your own? Y/N" << endl;
+            cout << "Do you want to fill first multiset by your own? Y/N" << endl;
         do {
             if (powerOfUn != 0)
             {
@@ -34,11 +34,11 @@ int main()
             int card1;
             if (powerOfUn != 0)
             {
-                cout << endl << "Input cardinal power of multiset #1:" << endl;
+                cout << "Input cardinal power of multiset #1:" << endl;
                 fflush(stdin);
                 fgets(answer, sizeof(answer), stdin);
                 fgets(answer, sizeof(answer), stdin);
-                while (sscanf(answer, "%d", &card1) != 1 || card1 < 0) {
+                while (sscanf(answer, "%d", &card1) != 1 || card1 < 0||card1>powerOfUn) {
                     cout << "Incorrect input data, input again:" << endl;
                     fflush(stdin);
                     fgets(answer, sizeof(answer), stdin);
@@ -52,37 +52,42 @@ int main()
         }
         else if (answer[0] == 'Y' || answer[0] == 'y') {
             int card1;
-            cout << endl << "Input cardinal power of multiset #1:" << endl;
+            cout << "Input cardinal power of multiset #1:" << endl;
             fflush(stdin);
             fgets(answer, sizeof(answer), stdin);
             fgets(answer, sizeof(answer), stdin);
-            while (sscanf(answer, "%d", &card1) != 1 || card1 < 0) {
+            while (sscanf(answer, "%d", &card1) != 1 || card1 < 0||card1>powerOfUn) {
                 cout << "Incorrect input data, input again:" << endl;
                 fflush(stdin);
                 fgets(answer, sizeof(answer), stdin);
             }
             fflush(stdin);
-            mM2.initialize_handly(card1);
+            mM1.initialize_handly(card1);
             cout << mM1;
         }
         if(powerOfUn!=0)
-            cout << endl << "Do you want to fill second multiset by your own? Y/N" << endl;
+            cout << "Do you want to fill second multiset by your own? Y/N" << endl;
         do {
             fflush(stdin);
             if (powerOfUn != 0)
                 cin >> answer;
             else
                 strcpy(answer, "n");
-        } while (answer[0] != 'n' && answer[0] != 'N' && answer[0] != 'y' && answer[0] != 'Y');
+            if (answer[0] == 'n' || answer[0] == 'N' || answer[0] == 'y' || answer[0] == 'Y') {
+                break;
+            }
+            else
+                cout << "Incorrect data" << endl;
+        } while (true);
         if (answer[0] == 'N' || answer[0] == 'n') {
             int card2;
             if (powerOfUn != 0) {
-                cout << endl << "Input cardinal power of multiset #2:" << endl;
+                cout << "Input cardinal power of multiset #2:" << endl;
                 fflush(stdin);
                 fgets(answer, sizeof(answer), stdin);
                 fgets(answer, sizeof(answer), stdin);
-                while (sscanf(answer, "%d", &card2) != 1 || card2 < 0) {
-                    cout << "Incorrect input data, input again:" << endl;
+                while (sscanf(answer, "%d", &card2) != 1 || card2 < 0||card2>powerOfUn) {
+                    cout << "Incorrect input data, input cardinal again:" << endl;
                     fflush(stdin);
                     fgets(answer, sizeof(answer), stdin);
                 }
@@ -95,12 +100,12 @@ int main()
         }
         else if (answer[0] == 'Y' || answer[0] == 'y') {
             int card2;
-            cout << endl << "Input cardinal power of multiset #2:" << endl;
+            cout << "Input cardinal power of multiset #2:" << endl;
             fflush(stdin);
             fgets(answer, sizeof(answer), stdin);
             fgets(answer, sizeof(answer), stdin);
-            while (sscanf(answer, "%d", &card2) != 1 || card2 < 0) {
-                cout << "Incorrect input data, input again:" << endl;
+            while (sscanf(answer, "%d", &card2) != 1 || card2 < 0||card2>powerOfUn) {
+                cout << "Incorrect input data, input cardinal again:" << endl;
                 fflush(stdin);
                 fgets(answer, sizeof(answer), stdin);
             }
