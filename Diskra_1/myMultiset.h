@@ -27,7 +27,7 @@ public:
 	friend myMultiset arithmeticMultip(const myMultiset& mM1, const myMultiset& mM2);
 	friend myMultiset powerSet(const myMultiset& mM1,int power);
 	myMultiset operator=(const myMultiset& mM_from);
-	myMultiset(int cardinal = Universum.size());
+	myMultiset();
 	void initialize_auto(int cardinal);
 	void initialize_handly(int cardinal);
 	unsigned int size()const;

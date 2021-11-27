@@ -18,21 +18,7 @@ ostream& operator<<(ostream& of, const myMultiset& mM) {
 	}
 	return of;
 }
-myMultiset::myMultiset(int cardinal) {
-	multiset.resize(Universum.size());
-	for (int i = 0; i < Universum.size(); i++) {
-		multiset[i].first = Universum[i].first;
-		multiset[i].second = 0;
-	}
-	for (int i = 0; i < cardinal; i++) {
-		int temp = rand() % (Universum.size());
-		if (multiset[temp].second < Universum[temp].second) {
-			multiset[temp].second++;
-		}
-		else {
-			i--;
-		}
-	}
+myMultiset::myMultiset() {
 }
 void toFillUniversum_WithGray(int a) {
 	if (a == 0) return;
